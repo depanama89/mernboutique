@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Layout from '../../components/layaout/Layout'
 import {BiMailSend, BiPhoneCall, BiSupport} from "react-icons/bi"
+import { useAuth } from '../../context/auth'
 
 const Contact = () => {
+  const [auth,setAuth]=useAuth()
   return (
     <Layout>
       <div className="row  contactus">
+        <p>{JSON.stringify(auth,null)}</p>
         <div className="col-md-6">
           <img src="/images/contactus.jpeg" alt=""  style={{width:"100%"}}/>
         </div>

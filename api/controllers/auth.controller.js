@@ -1,6 +1,7 @@
 import User from "../models/users.models.js"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import usersModels from "../models/users.models.js"
 
 export const register = async (req,res)=>{
 
@@ -8,13 +9,13 @@ export const register = async (req,res)=>{
         const {username,email,password,phone,address}=req.body
 
         if(!username){
-            return res.send({error:'Username is required'})
+            return res.send({message:'Username is required'})
         }
         if(!email){
-            return res.send({error:'Email is required'})
+            return res.send({message:'Email is required'})
         }
         if(!password){
-            return res.send({error:'password is required'})
+            return res.send({message:'password is required'})
         }
         // if(!phone){
         //     return res.send({error:'phone is required'})
@@ -27,7 +28,7 @@ export const register = async (req,res)=>{
         //exisiting user
         if(existingUser){
             return res.status(200).send({
-                success:true,
+                success:false,
                 message: "Already Register please"
             })
         }
@@ -41,8 +42,7 @@ export const register = async (req,res)=>{
 
         res.status(201).send({
             success:true,
-            message:"Register successfuly",
-            newUser
+            message:"Register successfuly"
         })
 
     }catch(error){
@@ -97,7 +97,9 @@ export const login = async(req,res) => {
         user:{
             _id: user._id,
             username:user.username,
-            email:user.email
+            email:user.email,
+            address:user.address,
+            role:user.role,
 
         },
         token
@@ -116,6 +118,48 @@ export const login = async(req,res) => {
             error
         })
     }
+}
+
+export const forgotPassword = async(req,res)=>{
+    try {
+        const {email,answer,newPassword}=req.body
+        if(!email){
+            res.status(400).send({message:"Email s required"})
+        }
+        if(!answer){
+            res.status(400).send({message:'answer is required'})
+        }
+        if(!newPassword){
+            res.status(400).send({message:'New password is required'})
+        }
+        //check
+        const user=await usersModels.findOne({email,answer})
+        //validation
+
+        if(!user){
+            return res.status(404).send({
+                success:false,
+                message:"wrong Email or Answer"
+            })
+        }
+        const  hashed= await bcrypt.hashSync(req.body.newPassword,5)
+        await usersModels.findByIdAndUpdate(user._id,{password:hashed})
+        res.status(200).send({
+            success:true,
+            message:"password Reset Successfully"
+        })
+
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            message:"sommething went wrong",
+            error
+        })
+        
+    }
+
 }
 
 export const test  = async(req,res)=>{

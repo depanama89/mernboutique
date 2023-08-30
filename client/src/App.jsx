@@ -7,6 +7,15 @@ import Contact from "./pages/contact/Contact"
 import About from './pages/about/About'
 import NoFound from './pages/nofound/NoFound'
 import Policy from './pages/policy/Policy'
+import Register from './pages/Auth/Register'
+import Login from './pages/Auth/Login'
+import Dashboard from './pages/user/Dashboard'
+import PrivateRoute from "./components/Routes/Private"
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+import ForgotPassword from './pages/Auth/ForgotPassword'
+import AdminRoute from './components/Routes/AdminRoute'
+import AdminDashboard from "./pages/admin/AdminDashboard"
 
 const App = () => {
   return (
@@ -14,9 +23,18 @@ const App = () => {
     <Routes>
 
      < Route path="/" element={<Home/>}  /> 
+     <Route  path="/Dashboard"  element={<PrivateRoute/>}>
+        <Route  path="user" element={<Dashboard/>}/>
+     </Route>
+     <Route  path="/Dashboard"  element={<AdminRoute/>}>
+        <Route  path="admin" element={<AdminDashboard/>}/>
+     </Route>
+     <Route path='/forgot-password' element={<ForgotPassword/>}/>     
+     < Route path="/register" element={<Register/>}  /> 
      <Route   path='/about'  element={<About/>}/>     
      <Route   path='/contact'  element={<Contact/>}/> 
      <Route   path='/policy'  element={<Policy/>}/>
+     <Route path="/login"  element={<Login/>}/>
      <Route   path='*'  element={<NoFound/>}/>    
     </Routes>  
     </>

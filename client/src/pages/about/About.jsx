@@ -1,11 +1,11 @@
 import React from 'react'
 import Layout from '../../components/layaout/Layout'
 
-const About = () => {
+const About = ({}) => {
   return (
-    <Layout>
+    <Layout title={"About us-ecommerce app"}>
       <div className="row contactus ">
-        <div className="col-md-6 ">
+        <div className="col-md-6 mb-3 ">
           <img
             src="/images/about.jpeg"
             alt="contactus"

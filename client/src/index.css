@@ -94,4 +94,26 @@ font-family: 'Poppins', sans-serif; */
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 20px;
+}
+/*  ============================================================
+===================Register page==========================*/
+.register{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  flex-direction: column;
+}
+.register .title{
+  font-weight: 600;
+}
+/* =============================================================
+=====================LOgin================================== */
+.login{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  flex-direction: column;
 }
