@@ -15,7 +15,7 @@ router.get("/user-auth",requireSiignIn,(req,res)=>{
     res.status(200).send({ok:true})
 })
 //protected Adminroute auth
-router.get("admin-auth",requireSiignIn,isAdmin,(req,res)=>{
+router.get("/admin-auth",requireSiignIn,isAdmin,(req,res)=>{
     res.status(200).send({ok:true})
 })
 
