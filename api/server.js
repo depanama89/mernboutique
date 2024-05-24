@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 import cors from "cors";
 import authRoute from "../api/routes/auth.route.js";
+import categoryRoute from "../api/routes/category.route.js";
 
 const app = express();
 
@@ -19,13 +20,14 @@ const connect = async () => {
   }
 };
 
-//middleware
-app.use(cors({ origin: "http://127.0.0.1:5173", credentials: true }));
+//middleware127.0.0.1
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 app.use(morgan("dev"));
 
 //router
 app.use("/api/auth", authRoute);
+app.use("/api/category", categoryRoute);
 
 app.get("/", (req, res) => {
   res.send({ message: "welcome to ecommerce" });

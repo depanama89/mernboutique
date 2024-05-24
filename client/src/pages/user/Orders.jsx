@@ -1,17 +1,17 @@
 import React from "react";
 import Layout from "../../components/layaout/Layout";
-import AdminMenu from "../../components/layaout/AdminMenu";
+import UserMenu from "../../components/layaout/UserMenu";
 
-const Users = () => {
+const Orders = () => {
   return (
-    <Layout title={"dashboard -all users"}>
-      <div className="container-fluid m-3 p-3 dashboard">
+    <Layout title={"your Orders"}>
+      <div className="container-flui p-3 m-3">
         <div className="row">
           <div className="col-md-3">
-            <AdminMenu />
+            <UserMenu />
           </div>
           <div className="col-md-9">
-            <h1>All Users</h1>
+            <h2>All Orders</h2>
           </div>
         </div>
       </div>
@@ -19,4 +19,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Orders;
